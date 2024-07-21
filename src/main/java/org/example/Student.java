@@ -13,7 +13,11 @@ class Student implements Comparable<Student>{
 
     @Override
     public int compareTo(Student other){
-        return Double.compare(this.avgScore, other.avgScore);
+        int result = Double.compare(this.avgScore, other.avgScore);
+        if (result == 0) {
+            result = this.name.compareTo(other.name);
+        }
+        return result;
     }
 
     @Override
@@ -22,11 +26,15 @@ class Student implements Comparable<Student>{
     }
 
     @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+    public boolean equals(Object o){
+        if(this == o) return false;
+        if(o == null || getClass() != o.getClass()) return false;
         Student student = (Student) o;
-        return Double.compare(student.avgScore, avgScore) == 0 &&
-                Objects.equals(name, student.name);
+        return Double.compare(student.avgScore, avgScore) == 0 && Objects.equals(student.name, name);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(name, avgScore);
     }
 }

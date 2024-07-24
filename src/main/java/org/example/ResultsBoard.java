@@ -1,6 +1,5 @@
 package org.example;
 import java.util.ArrayList;
-import java.util.Comparator;
 import java.util.List;
 
 public class ResultsBoard {
@@ -16,7 +15,6 @@ public class ResultsBoard {
     }
 
     List<String> top3(){
-        students.sort(Comparator.comparingDouble((Student s) -> s.avgScore).reversed().thenComparing(s -> students.indexOf(s)));
         List<String> top3Students = new ArrayList<>();
         for (int i = 0; i < 3 && i < students.size(); i++) {
             top3Students.add(students.get(i).name);
